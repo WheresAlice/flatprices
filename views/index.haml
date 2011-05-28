@@ -17,6 +17,10 @@
       .body
         %p Averaged weekly flat prices for given cities by scraping Gumtree.  Number of bedrooms is currently ignored.
         %table#cities
+          %thead
+            %tr
+              %th City
+              %th Price
           %tbody
             - Cities.each do |city|
               %tr
