@@ -27,16 +27,16 @@ class City
   end
   
   def flatprice
-    #prices = []
-    #doc = open("http://www.gumtree.com/flats-and-houses-for-rent-offered/#{name.downcase}") { |f| Hpricot(f) }
-    #doc.search("//div[@class='price']").each do |price|
-    #  prices.push( price.inner_text[/[0-9]+\.?[0-9]+/].to_i )
-    #end
-    #prices.mean
-    rand(400)
+    prices = []
+    doc = open("http://www.gumtree.com/flats-and-houses-for-rent-offered/#{name.downcase}") { |f| Hpricot(f) }
+    doc.search("//div[@class='price']").each do |price|
+      prices.push( price.inner_text[/[0-9]+\.?[0-9]+/].to_i )
+    end
+    prices.mean
   end
 end
 
 get '/' do
-  haml :index, :locals => { :Cities => {:Bradford => "&pound;#{City.new('Bradford').flatprice}", :Leeds => "&pound#{City.new('Leeds').flatprice}", :Manchester => "&pound'#{City.new('Manchester').flatprice}", :Newcastle => "&pound;#{City.new('Newcastle').flatprice}"}}
+  headers['Cache-Control'] = 'public, max-age=600'
+  haml :index, :locals => { :Cities => {:Bradford => "&pound;#{City.new('Bradford').flatprice}", :Leeds => "&pound#{City.new('Leeds').flatprice}", :Manchester => "&pound#{City.new('Manchester').flatprice}", :Newcastle => "&pound;#{City.new('Newcastle').flatprice}"}}
 end
