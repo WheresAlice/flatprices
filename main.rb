@@ -55,8 +55,12 @@ get '/' do
     :Bradford => "&pound;#{sprintf("%.2f", City.new('Bradford').flatprice)}",
     :Leeds => "&pound#{sprintf("%.2f", City.new('Leeds').flatprice)}",
     :Manchester => "&pound#{sprintf("%.2f", City.new('Manchester').flatprice)}",
-    :Newcastle => "&pound;#{sprintf("%.2f", City.new('Newcastle').flatprice)}"
-  }, :ttl => REDIS.ttl('bradford')}
+    :Newcastle => "&pound;#{sprintf("%.2f", City.new('Newcastle').flatprice)}",
+    :Sheffield => "&pound;#{sprintf("%.2f", City.new('Sheffield').flatprice)}",
+    :York => "&pound;#{sprintf("%.2f", City.new('York').flatprice)}"
+  },
+  :ttl => REDIS.ttl('bradford')
+  }
 end
 
 get '/ping' do
