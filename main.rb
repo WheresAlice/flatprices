@@ -21,6 +21,7 @@ class Array
   end
 end
 
+# Methods to return data about a given city
 class City
   attr_accessor :name
   
@@ -33,18 +34,18 @@ class City
   end
   
   def flatprice
-    ttl = REDIS.ttl(name.downcase)
+    ttl = REDIS.ttl(name)
     if (ttl < 0)
       prices = []
-      doc = open("http://www.gumtree.com/flats-and-houses-for-rent-offered/#{name.downcase}") { |f| Hpricot(f) }
+      doc = open("http://www.gumtree.com/flats-and-houses-for-rent-offered/#{name.downcase}") { |file| Hpricot(file) }
       doc.search("//div[@class='price']").each do |price|
         prices.push( price.inner_text[/[0-9]+\.?[0-9]+/].to_i )
       end
-      REDIS.set name.downcase, prices.mean
-      REDIS.expire name.downcase, 3600
+      REDIS.set name, prices.mean
+      REDIS.expire name, 3600
       @prices = prices.mean
     else
-      @prices = REDIS.get(name.downcase)
+      @prices = REDIS.get(name)
     end
     "&pound;#{sprintf("%.2f", @prices)}"
   end
