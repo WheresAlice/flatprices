@@ -1,7 +1,7 @@
 !!!
 %html{ :lang => "en" }
   %head
-    %title Weekly Flat Prices
+    %title Gumtree Flat Prices
     %meta{ :charset => "utf-8" }
     %meta{ :content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible" }
     %link{:href=>"http://cachedcommons.org/cache/blueprint/0.9.1/stylesheets/screen-min.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}
@@ -11,20 +11,20 @@
       %img{:alt => "Fork me on GitHub", :src => "https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67", :style => "position: absolute; top: 0; right: 0; border: 0;"}
     .container
       .header.span-24
-        %h1 Weekly Flat Prices
+        %h1 Gumtree Flat Prices
       .body.span-24
-        %p Averaged weekly flat prices for given cities by scraping Gumtree.  Number of bedrooms is currently ignored.
+        %p.quiet Averaged weekly flat prices for given cities by scraping Gumtree.  Number of bedrooms is currently ignored.
         %table
           %thead
             %tr
               %th City
-              %th Price
+              %th Weekly Rent
           %tbody
             - Cities.each do |city|
               %tr
               - city.each do |value|
                 %td= value
-      .footer
+      .footer.small.quiet
         .span-12= "#{ttl} seconds before re-fetching "
         .span-12.last
           %a( href="http://kaerast.info") Created by Alice
