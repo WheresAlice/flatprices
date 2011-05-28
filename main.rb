@@ -25,6 +25,7 @@ end
 class City
   attr_accessor :name
   
+  # Takes the city name, which is treated as case sensitive by Redis
   def initialize(name)
     @name = name
   end
@@ -33,6 +34,7 @@ class City
     name
   end
   
+  # Returns an html output of the average flat price per week, as taken from Gumtree
   def flatprice
     ttl = REDIS.ttl(name)
     if (ttl < 0)
@@ -51,6 +53,7 @@ class City
   end
 end
 
+# Main page
 get '/' do
   haml :index, :locals => { :Cities => {
     :Bradford =>   City.new('Bradford').flatprice,
@@ -61,10 +64,11 @@ get '/' do
     :Sheffield =>  City.new('Sheffield').flatprice,
     :York =>       City.new('York').flatprice
   },
-  :ttl => REDIS.ttl('bradford')
+  :ttl => REDIS.ttl('Bradford')
   }
 end
 
+# Ping/Pong to provide a cheap way of detecting if the app is up
 get '/ping' do
   'pong'
 end
