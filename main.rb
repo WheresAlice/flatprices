@@ -52,13 +52,13 @@ end
 
 get '/' do
   haml :index, :locals => { :Cities => {
-    :Bradford => "&pound;#{sprintf("%.2f", City.new('Bradford').flatprice)}",
-    :Hull => "&pound;#{sprintf("%2.f"), City.new('Hull').flatprice)}",
-    :Leeds => "&pound#{sprintf("%.2f", City.new('Leeds').flatprice)}",
-    :Manchester => "&pound#{sprintf("%.2f", City.new('Manchester').flatprice)}",
-    :Newcastle => "&pound;#{sprintf("%.2f", City.new('Newcastle').flatprice)}",
-    :Sheffield => "&pound;#{sprintf("%.2f", City.new('Sheffield').flatprice)}",
-    :York => "&pound;#{sprintf("%.2f", City.new('York').flatprice)}"
+    :Bradford =>   "&pound;#{sprintf("%.2f", City.new('Bradford').flatprice)}",
+    :Hull =>       "&pound;#{sprintf("%2.f", City.new('Hull').flatprice)}",
+    :Leeds =>      "&pound;#{sprintf("%.2f", City.new('Leeds').flatprice)}",
+    :Manchester => "&pound;#{sprintf("%.2f", City.new('Manchester').flatprice)}",
+    :Newcastle =>  "&pound;#{sprintf("%.2f", City.new('Newcastle').flatprice)}",
+    :Sheffield =>  "&pound;#{sprintf("%.2f", City.new('Sheffield').flatprice)}",
+    :York =>       "&pound;#{sprintf("%.2f", City.new('York').flatprice)}"
   },
   :ttl => REDIS.ttl('bradford')
   }
