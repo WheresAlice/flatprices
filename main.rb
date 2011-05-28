@@ -51,6 +51,14 @@ class City
 end
 
 get '/' do
-  headers['Cache-Control'] = 'public, max-age=600'
-  haml :index, :locals => { :Cities => {:Bradford => "&pound;#{City.new('Bradford').flatprice}", :Leeds => "&pound#{City.new('Leeds').flatprice}", :Manchester => "&pound#{City.new('Manchester').flatprice}", :Newcastle => "&pound;#{City.new('Newcastle').flatprice}"}}
+  haml :index, :locals => { :Cities => {
+    :Bradford => "&pound;#{City.new('Bradford').flatprice}",
+    :Leeds => "&pound#{City.new('Leeds').flatprice}",
+    :Manchester => "&pound#{City.new('Manchester').flatprice}",
+    :Newcastle => "&pound;#{City.new('Newcastle').flatprice}"
+  }}
+end
+
+get '/ping' do
+  'pong'
 end
