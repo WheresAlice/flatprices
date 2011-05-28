@@ -34,7 +34,7 @@ class City
   
   def flatprice
     ttl = REDIS.ttl(name.downcase)
-    if (ttl < 0) {
+    if (ttl < 0)
       prices = []
       doc = open("http://www.gumtree.com/flats-and-houses-for-rent-offered/#{name.downcase}") { |f| Hpricot(f) }
       doc.search("//div[@class='price']").each do |price|
@@ -43,9 +43,9 @@ class City
       REDIS.set name.downcase, prices.mean
       REDIS.expire name.downcase, 600
       @prices = prices.mean
-    } else {
+    else
       @prices = REDIS.get(name.downcase)
-    }
+    end
     @prices
   end
 end
