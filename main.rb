@@ -52,10 +52,10 @@ end
 
 get '/' do
   haml :index, :locals => { :Cities => {
-    :Bradford => "&pound;#{City.new('Bradford').flatprice}",
-    :Leeds => "&pound#{City.new('Leeds').flatprice}",
-    :Manchester => "&pound#{City.new('Manchester').flatprice}",
-    :Newcastle => "&pound;#{City.new('Newcastle').flatprice}"
+    :Bradford => "&pound;#{sprintf("%.2f", City.new('Bradford').flatprice}",
+    :Leeds => "&pound#{sprintf("%.2f", City.new('Leeds').flatprice}",
+    :Manchester => "&pound#{sprintf("%.2f", City.new('Manchester').flatprice}",
+    :Newcastle => "&pound;#{sprintf("%.2f", City.new('Newcastle').flatprice}"
   }}
 end
 
