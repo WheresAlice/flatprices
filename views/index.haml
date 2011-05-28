@@ -8,9 +8,9 @@
     
   %body
     .container
-      .header
+      .header.span-24
         %h1 Weekly Flat Prices
-      .body
+      .body.span-24
         %p Averaged weekly flat prices for given cities by scraping Gumtree.  Number of bedrooms is currently ignored.
         %table
           %thead
@@ -23,5 +23,6 @@
               - city.each do |value|
                 %td= value
       .footer
-        %p= "#{ttl} seconds before re-fetching"
-        %a( href="http://kaerast.info") Created by Alice
+        .span-12= "#{ttl} seconds before re-fetching "
+        .span-12.last
+          %a( href="http://kaerast.info") Created by Alice
