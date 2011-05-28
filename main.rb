@@ -41,7 +41,7 @@ class City
         prices.push( price.inner_text[/[0-9]+\.?[0-9]+/].to_i )
       end
       REDIS.set name.downcase, prices.mean
-      REDIS.expire name.downcase, 600
+      REDIS.expire name.downcase, 3600
       @prices = prices.mean
     else
       @prices = REDIS.get(name.downcase)
